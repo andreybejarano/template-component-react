@@ -22,3 +22,10 @@
     ├── index.jsx
     └── index.jsx
 ```
+
+## Build:
+
+``` shell
+$ npm run build -- --watch
+```
+
