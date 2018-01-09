@@ -1,6 +1,6 @@
 
 .root {
-  font-weight: var(--bold);
+  font-weight: 500;
   color: var(--title-color);
 }
 

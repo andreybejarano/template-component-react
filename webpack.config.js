@@ -10,7 +10,7 @@ const config = {
   target: 'web',
   entry: {
     [LIB_NAME]: path.resolve(__dirname, 'src'),
-    sandbox: './sandbox/index.jsx'
+    sandbox: './sandbox/index.js'
   },
   output: {
     filename: '[name].js',
@@ -38,18 +38,41 @@ const config = {
       },
       {
         test: /\.css/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'postcss-loader',
-              options: {
-                sourceMap: true,
-                minimize: true
-              }
-            }
-          ]
-        })
+        exclude: /node_modules/,
+        rules: [
+          {
+            include: [
+              path.resolve(__dirname, './src')
+            ],
+            use: ExtractTextPlugin.extract({
+              fallback: 'isomorphic-style-loader', // Convert CSS into JS module
+              use: [
+                // Process internal/project styles (from client folder)
+                {
+                  loader: 'css-loader',
+                  options: {
+                    importLoaders: 1,
+                    sourceMap: true,
+                    camelCase: 'dashes',
+                    modules: true,
+                    localIdentName: '[name]-[local]-[hash:base64:5]',
+                    minimize: true,
+                    discardComments: { removeAll: true }
+                  }
+                },
+                // Apply PostCSS plugins including autoprefixer
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    config: {
+                      path: './postcss.config.js'
+                    }
+                  }
+                }
+              ]
+            })
+          }
+        ]
       }
     ]
   },

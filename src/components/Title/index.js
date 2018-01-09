@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import s from './title.css';
+import s from './Title.css';
 
 const Title = ({ size, className, children, uppercase }) => {
   const styles = cx({

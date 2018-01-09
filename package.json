@@ -2,7 +2,7 @@
   "name": "template-component-react",
   "version": "1.0.0",
   "description": "Templete for compontent react.js",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "clean": "rm -rf dist/",
     "build": "npm run clean && webpack",
@@ -45,7 +45,9 @@
     "eslint-plugin-react": "^7.5.1",
     "eslint-plugin-standard": "^3.0.1",
     "extract-text-webpack-plugin": "^3.0.2",
+    "isomorphic-style-loader": "^4.0.0",
     "postcss": "^6.0.16",
+    "postcss-global-import": "^1.0.6",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.10",
     "style-loader": "^0.19.1",
